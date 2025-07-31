@@ -1,0 +1,44 @@
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | migrations
+)/
+'''
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "mcp_method_hub.settings.development"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+addopts = "--tb=short --strict-markers --disable-warnings"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
+[tool.coverage.run]
+source = "."
+omit = [
+    "*/venv/*",
+    "*/migrations/*",
+    "*/settings/*",
+    "manage.py",
+    "*/tests/*",
+    "conftest.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
