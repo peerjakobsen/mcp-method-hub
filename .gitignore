@@ -56,5 +56,8 @@ yarn-error.log*
 # Docker
 .dockerignore
 
+# Local database files
+data/
+
 # Compiled files
 *.compiled
